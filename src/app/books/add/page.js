@@ -19,7 +19,7 @@ export default function AddPostPage() {
 
   return (
     <div>
-      <h1>Add New Post</h1>
+      <h1>Add Book</h1>
       <form action={handleAddBook}>
         <label>Title:</label>
         <input name="title" placeholder="Title" />

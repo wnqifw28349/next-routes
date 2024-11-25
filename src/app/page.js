@@ -5,7 +5,13 @@ export default function HomePage() {
     <div>
       <h1>Home Page</h1>
       <h3>this {"<h3>"} is in the server component</h3>
+      <p>
+        {"//"}this is a client rendered component{"//"}
+      </p>
       <Clicker />
+      <p>
+        {"//"}this is a client rendered component{"//"}
+      </p>
       <h3>so is this one</h3>
     </div>
   );

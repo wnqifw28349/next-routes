@@ -16,9 +16,7 @@ export function Clicker() {
   return (
     <div>
       <p>{"//"}client component</p>
-      <button onClick={handleClick} onMouseDown={handleClick}>
-        Click Me
-      </button>
+      <button onClick={handleClick}>Click Me</button>
       <p onClick={resetCount}>Count:{count}</p>
       <p>{"//"}client component</p>
     </div>

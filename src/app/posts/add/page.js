@@ -1,5 +1,6 @@
 import { db } from "@/utilities/db.js";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 export default function AddPostPage() {
   async function handleAddPost(formData) {
@@ -11,8 +12,9 @@ export default function AddPostPage() {
     await db.query(`INSERT INTO posts (title, content) VALUES ($1, $2)`, [
       title,
       content,
-    ]); //$ANITI$ATION
+    ]);
 
+    revalidatePath("/posts");
     redirect("/posts");
   }
 
@@ -23,7 +25,7 @@ export default function AddPostPage() {
         <label>Title:</label>
         <input name="title" placeholder="Title" />
         <label>Content:</label>
-        <input name="Content" placeholder="Write something..." />
+        <input name="content" placeholder="Write something..." />
         <button>Add Post</button>
       </form>
     </div>

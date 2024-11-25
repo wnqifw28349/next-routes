@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Requirements I achieved:
 
-## Getting Started
+- Displayed all posts on the page.
+- Created a SQL schema for a posts table and a comments table, with the comments being connected to the posts table with a foreign key.
+- Created a delete button on posts that allows users to delete the post from the database.
+- Created a form which saves comments to a dedicated comments table, with the comments being connected to the posts table with a foreign key.
+- Allowed users to comment on individual posts in their dynamic routes. Comments should be associated with posts, and have a dynamic route (e.g. /posts/:postid).
+- Added a redirect when a user creates a post to redirect them to the posts page.
 
-First, run the development server:
+Requirements not hit:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Option to sort the posts in ascending/descending order.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The biggest challenge was the app failing when trying to render a page for a post that has zero comments.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+I tackled this by using a ternary operator for the SQL query that will conditionally handle
+the output of the fetch response for the comments. I asked ChatGPT how to structure the ternary operator for a fetch that responds with a null value. I used the JSON format for the comments array in the JSON response from data.rows as the falsey value, which ensures that there is an array that can be mapped through when trying to render comments.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+I used https://dev.to/dmodena/difference-between-join-and-where-clauses-in-sql-41pi to tackle grouping by id for the comments. Since ARRAY_AGG was used to collect the comments content, WHERE clause is replaced with HAVING in order to group them by id.
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The next step I would do for this app would be to reorganise the client components such as the comments and posts forms in to the components folder, and then call them in the routes where they are used. I would also add styling to make the page more user-friendly and intuitive to use.

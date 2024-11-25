@@ -22,7 +22,9 @@ export default function RootLayout({ children }) {
           <nav>
             <Link href="/">Home</Link> | <Link href="/books">Books</Link> |{" "}
             <Link href="/books/add">Add Book</Link> |{" "}
-            <Link href="/posts">Posts</Link> | <Link href="/about">About</Link>
+            <Link href="/posts">Posts</Link> |{" "}
+            <Link href="/posts/add">Add Post</Link>  |{" "}
+            <Link href="/about">About</Link>
           </nav>
         </header>
         {children}
